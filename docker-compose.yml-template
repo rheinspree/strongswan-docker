@@ -34,9 +34,5 @@ services:
     volumes:
       - /lib/modules:/lib/modules
       - /etc/localtime:/etc/localtime
-      - /Docker/Services/strongswan/service/ipsec.conf:/etc/ipsec.conf
-      - /Docker/Services/strongswan/service/ipsec.secrets:/etc/ipsec.secrets
-      - /Docker/Services/strongswan/service/strongswan.conf:/etc/strongswan.conf
-      - /Docker/Services/strongswan/service/ipsec.d:/etc/ipsec.d
-      #- /Docker/Cache/strongswan/service/charon.log:/var/log/charon.log
+      - ./service:/service
 

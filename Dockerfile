@@ -10,6 +10,7 @@ RUN apk --update add build-base \
             ca-certificates \
             curl \
             bash \
+            rsync \
             ip6tables \
             iproute2 \
             iptables-dev \
@@ -58,11 +59,21 @@ RUN apk --update add build-base \
     apk del build-base curl openssl-dev && \
     rm -rf /var/cache/apk/*
 
-EXPOSE 500/udp \
-       4500/udp
+
+COPY ./bin/ovw /usr/local/bin/ovw
+RUN chmod a+x /usr/local/bin/*
+
+RUN echo ". /etc/profile" > /root/.bashrc
+RUN echo "export PS1='\H:\w\\$ '" >> /etc/profile
+RUN echo "alias ll='ls -alF'"     >> /etc/profile
+RUN echo 'export TERM="xterm"'    >> /etc/profile
+
 
 COPY ./start.sh /start.sh
 RUN chmod a+x   /start.sh
+
+EXPOSE 500/udp \
+       4500/udp
 
 CMD ["/start.sh"]
 #ENTRYPOINT ["/usr/sbin/ipsec"]
