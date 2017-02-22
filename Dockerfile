@@ -9,6 +9,7 @@ ENV STRONGSWAN_RELEASE https://download.strongswan.org/strongswan.tar.bz2
 RUN apk --update add build-base \
             ca-certificates \
             curl \
+            bash \
             ip6tables \
             iproute2 \
             iptables-dev \
@@ -60,5 +61,9 @@ RUN apk --update add build-base \
 EXPOSE 500/udp \
        4500/udp
 
-ENTRYPOINT ["/usr/sbin/ipsec"]
-CMD ["starter", "--nofork"]
+COPY ./start.sh /start.sh
+RUN chmod a+x   /start.sh
+
+CMD ["/start.sh"]
+#ENTRYPOINT ["/usr/sbin/ipsec"]
+#CMD ["starter", "--nofork"]

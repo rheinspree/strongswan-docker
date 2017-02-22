@@ -1,0 +1,42 @@
+version: '2'
+services:
+  strongswan:
+    ##################################################
+    # BUILD section
+    ##################################################
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      #args:
+      #  BUILD_TZ: Europe/Berlin
+    ##################################################
+    # RUN section
+    ##################################################
+    image: unimock/strongswan-docker:0.0.0
+    #image: houselabs/strongswan
+    restart: unless-stopped
+    container_name: strongswan
+    privileged: true
+    cap_add:
+      - ALL
+
+    ### client config ###
+    #
+    network_mode: "host"
+    #
+    ### server config ###
+    #ports:
+    #  - "500:500/udp"
+    #  - "4500:4500/udp"
+    #environment:
+    #  - VPN_SUBNET=192.168.147.0/24
+    
+    volumes:
+      - /lib/modules:/lib/modules
+      - /etc/localtime:/etc/localtime
+      - /Docker/Services/strongswan/service/ipsec.conf:/etc/ipsec.conf
+      - /Docker/Services/strongswan/service/ipsec.secrets:/etc/ipsec.secrets
+      - /Docker/Services/strongswan/service/strongswan.conf:/etc/strongswan.conf
+      - /Docker/Services/strongswan/service/ipsec.d:/etc/ipsec.d
+      #- /Docker/Cache/strongswan/service/charon.log:/var/log/charon.log
+
