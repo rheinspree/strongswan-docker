@@ -7,8 +7,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-      #args:
-      #  BUILD_TZ: Europe/Berlin
+      args:
+        STRONGSWAN_RELEASE: https://download.strongswan.org/strongswan.tar.bz2
     ##################################################
     # RUN section
     ##################################################

@@ -4,7 +4,7 @@
 
 FROM alpine:edge
 
-ENV STRONGSWAN_RELEASE https://download.strongswan.org/strongswan.tar.bz2
+ARG STRONGSWAN_RELEASE="https://download.strongswan.org/strongswan-5.5.1.tar.bz2"
 
 RUN apk --update add build-base \
             ca-certificates \
