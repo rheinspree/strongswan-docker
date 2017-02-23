@@ -64,17 +64,18 @@ COPY ./bin/ovw /usr/local/bin/ovw
 RUN chmod a+x /usr/local/bin/*
 
 RUN echo ". /etc/profile" > /root/.bashrc
-RUN echo "export PS1='\H:\w\\$ '" >> /etc/profile
 RUN echo "alias ll='ls -alF'"     >> /etc/profile
+#RUN echo "export PS1='\H:\w\\$ '" >> /etc/profile
 RUN echo 'export TERM="xterm"'    >> /etc/profile
 
 
-COPY ./start.sh /start.sh
-RUN chmod a+x   /start.sh
+COPY ./entry.sh /entry.sh
+RUN chmod a+x   /entry.sh
 
 EXPOSE 500/udp \
        4500/udp
 
-CMD ["/start.sh"]
-#ENTRYPOINT ["/usr/sbin/ipsec"]
-#CMD ["starter", "--nofork"]
+ENTRYPOINT ["/entry.sh"]
+CMD ["/usr/sbin/ipsec", "start", "--nofork"]
+       
+#CMD ["/entry.sh"]

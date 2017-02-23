@@ -12,10 +12,11 @@ services:
     ##################################################
     # RUN section
     ##################################################
-    image: unimock/strongswan-docker:0.0.0
+    image: unimock/strongswan-docker:0.0.1
     #image: houselabs/strongswan
     restart: unless-stopped
     container_name: strongswan
+    hostname: strongswan
     privileged: true
     cap_add:
       - ALL
