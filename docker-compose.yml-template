@@ -8,7 +8,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        STRONGSWAN_RELEASE: https://download.strongswan.org/strongswan.tar.bz2
+        STRONGSWAN_RELEASE: https://download.strongswan.org/strongswan-5.5.1.tar.bz2
     ##################################################
     # RUN section
     ##################################################
