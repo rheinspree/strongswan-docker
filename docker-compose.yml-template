@@ -12,8 +12,7 @@ services:
     ##################################################
     # RUN section
     ##################################################
-    image: unimock/strongswan-docker:0.0.1
-    #image: houselabs/strongswan
+    image: unimock/strongswan-docker:0.0.2
     restart: unless-stopped
     container_name: strongswan
     hostname: strongswan
