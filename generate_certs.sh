@@ -1,14 +1,14 @@
 #!/bin/sh
 
-C=US
-O=StrongSwan
-CA_CN=strongswan.org
-SERVER_CN=moon.strongswan.org
-SERVER_SAN=moon.strongswan.org
-CLIENT_CN="carol@strongswan.org"
+C=DE
+O=RheinSpree
+CA_CN=rhein-spree.com
+SERVER_CN=amazonas.rhein-spree.com
+SERVER_SAN=amazonas.rhein-spree.com
+CLIENT_CN="carol@rhein-spree.com"
 
 CONFIG_DIR=$PWD/config/ipsec.d
-IPSEC="docker run -it --rm=true -v $CONFIG_DIR:/etc/ipsec.d strongswan"
+IPSEC="docker run -it --privileged --rm=true -v $CONFIG_DIR:/etc/ipsec.d unimock/strongswan-docker"
 
 mkdir -p $CONFIG_DIR/aacerts \
          $CONFIG_DIR/acerts \
